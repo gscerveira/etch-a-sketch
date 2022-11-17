@@ -8,6 +8,6 @@ createCells();
 function createCells() {
     for (let i = 0; i < gridCellsNumber; i++) {
         let div = document.createElement("div");
-        document.container.appendChild(div);    
+        container.appendChild(div);    
     }
 }

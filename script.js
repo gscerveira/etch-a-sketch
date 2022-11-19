@@ -8,6 +8,7 @@ createCells();
 function createCells() {
     for (let i = 0; i < gridCellsNumber; i++) {
         let div = document.createElement("div");
+        div.id = `cell${i}`;
         container.appendChild(div);    
     }
 }

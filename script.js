@@ -12,3 +12,13 @@ function createCells() {
         container.appendChild(div);    
     }
 }
+
+function paintCell(cell) {
+    //let currentCell = document.getElementById(e.target.id);
+    cell.style.backgroundColor = "purple";
+}
+
+// select all with id starting with cell
+let cells = document.querySelectorAll('[id^=cell]');
+//add event listener that runs paintCell function, it gets the id and paints the cell
+cells.forEach(cell => {cell.addEventListener('mouseover', () => paintCell(cell))});

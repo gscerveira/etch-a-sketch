@@ -5,20 +5,36 @@ let container = document.getElementById("container");
 
 createCells();
 
+let resetBtn = document.getElementById("resetBtn");
+
+resetBtn.addEventListener('click', () => resetGrid())
+
 function createCells() {
     for (let i = 0; i < gridCellsNumber; i++) {
         let div = document.createElement("div");
         div.id = `cell${i}`;
-        container.appendChild(div);    
+        container.appendChild(div);
     }
 }
 
+function resetGrid() {
+    cells.forEach(cell => {cell.remove()});
+    let cellsPerSide = prompt("Choose number of cells per side (Up to 100)");
+    if (cellsPerSide <= 100 && cellsPerSide > 0) {
+        gridCellsNumber = Math.pow(cellsPerSide, 2);
+    }
+    else {resetGrid()}
+    createCells();
+    cells = document.querySelectorAll('[id^=cell]');
+    container.style.gridTemplateColumns = `repeat(${cellsPerSide}, 1fr)`;
+    cells.forEach(cell => {cell.addEventListener('mouseover', () => paintCell(cell))});
+}
+
 function paintCell(cell) {
-    //let currentCell = document.getElementById(e.target.id);
     cell.style.backgroundColor = "purple";
 }
 
-// select all with id starting with cell
+
 let cells = document.querySelectorAll('[id^=cell]');
-//add event listener that runs paintCell function, it gets the id and paints the cell
+
 cells.forEach(cell => {cell.addEventListener('mouseover', () => paintCell(cell))});
